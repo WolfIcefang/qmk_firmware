@@ -1,4 +1,4 @@
-This is an old version of qmk, and I don't know how I set it up. It serves no purpose now.
+This is an Wolf Icefang's version of qmk, featuring the Atomic Green keymap.
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
 [![Build Status](https://travis-ci.org/qmk/qmk_firmware.svg?branch=master)](https://travis-ci.org/qmk/qmk_firmware)
 [![Discord](https://img.shields.io/discord/440868230475677696.svg)](https://discord.gg/Uq7gcHh)
