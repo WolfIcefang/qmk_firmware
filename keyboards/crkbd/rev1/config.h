@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x3060
+//#define VENDOR_ID       0xFEED
+//#define PRODUCT_ID      0x3060
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    foostan
 #define PRODUCT         Corne Keyboard (crkbd)
@@ -54,13 +54,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_DI_PIN D3
 
 #ifdef RGBLIGHT_ENABLE
-#define RGBLED_NUM 12    // Number of LEDs
-#define RGBLIGHT_SPLIT
+	#define RGBLED_NUM 12    // Number of LEDs
+	#define RGBLIGHT_SPLIT
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-#define RGBLED_NUM 36    // Number of LEDs
-#define DRIVER_LED_TOTAL RGBLED_NUM
+	#define RGBLED_NUM 36    // Number of LEDs
+	#define DRIVER_LED_TOTAL RGBLED_NUM
 #endif
 
 /*

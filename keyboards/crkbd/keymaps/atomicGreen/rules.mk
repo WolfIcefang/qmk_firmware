@@ -1,6 +1,6 @@
 
 # Build options (I think)
-LINK_TIME_OPTIMIZATION_ENABLE = yes
+LTO_ENABLE = yes
 EXTRAKEY_ENABLE = yes
 COMBO_ENABLE = yes
 NKRO_ENABLE = yes
@@ -18,6 +18,5 @@ LEADER_ENABLE = no
 MIDI_ENABLE = no
 UNICODE_ENABLE = no
 BLUETOOTH_ENABLE = no
-BLUETOOTH = no
 OLED_DRIVER_ENABLE = no
 # Do not enable SLEEP_LED_ENABLE. It uses the same timer as BACKLIGHT_ENABLE

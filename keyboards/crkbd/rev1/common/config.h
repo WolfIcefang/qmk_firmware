@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SOFT_SERIAL_PIN D2
 
 #ifdef RGB_MATRIX_ENABLE
-#    define RGB_MATRIX_SPLIT { 27, 27 }
+#    define RGB_MATRIX_SPLIT { 18, 18 }
 #endif
 
 #define DIODE_DIRECTION COL2ROW
