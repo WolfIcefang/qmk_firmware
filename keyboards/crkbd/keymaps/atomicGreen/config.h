@@ -34,8 +34,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM_PER_KEY
 #undef PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
+#define DYNAMIC_MACRO_NO_NESTING
 
-#define COMBO_COUNT 17
+#define COMBO_COUNT 18
 #define COMBO_TERM 100
 
 #define TAPPING_TOGGLE 2 // number of times a layer must be tapped in order to activate it.

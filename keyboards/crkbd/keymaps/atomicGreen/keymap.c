@@ -11,28 +11,28 @@ extern uint8_t is_master;
 #define _SYMBOL 1
 #define _ARROW 2
 #define _FUNC 3
-#define _MACRO 4
-#define _GAME 5
-#define _GAMENUM 6
+#define _GAME 4
+#define _GAMENUM 5
 
 enum custom_keycodes {
 	COMM_PN = SAFE_RANGE,
+	GAMECLK,
 	RGBTIME,
-	MA_UNDO,
-	MA_REDO,
+	SYMLK,
+	ARROWLK
 };
 
 // Mod-tap shortened keycodes
 // for qwerty
 #define LALT_A LALT_T(KC_A)
-#define LGUI_S LGUI_T(KC_S)
-#define LCTL_D LCTL_T(KC_D)
-#define LSFT_F LSFT_T(KC_F)
+#define LGUI_R LGUI_T(KC_R)
+#define LCTL_S LCTL_T(KC_S)
+#define LSFT_TT LSFT_T(KC_T)
 
-#define RSFT_J RSFT_T(KC_J)
-#define RCTL_K RCTL_T(KC_K)
-#define RGUI_L RGUI_T(KC_L)
-#define RALT_QT RALT_T(KC_QUOTE)
+#define RSFT_N RSFT_T(KC_N)
+#define RCTL_E RCTL_T(KC_E)
+#define RGUI_I RGUI_T(KC_I)
+#define RALT_O RALT_T(KC_O)
 
 // for symbols
 #define LALT_GV LALT_T(KC_GRAVE)
@@ -46,14 +46,15 @@ enum custom_keycodes {
 #define RALT_EQ RALT_T(KC_EQUAL)
 
 // for arrows and layers above
-#define TG_MACR TG(_MACRO)
 #define TG_FUNC TG(_FUNC)
-#define TG_GAME TG(_GAME)
 #define TG_GNUM TG(_GAMENUM)
 
 // Black magic layer switching
-#define T_SYM LT(_SYMBOL, KC_BSPC)
-#define T_ARROW TT(_ARROW)
+#define SPCONE LT(_SYMBOL, KC_SPC)
+#define SPCTWO LT(_ARROW, KC_SPC)
+
+#define BSPCONE LT(_SYMBOL, KC_BSPC)
+#define BSPCTWO LT(_ARROW, KC_BSPC)
 
 #define TO_SYMB TO(_SYMBOL)
 #define TO_AROW TO(_ARROW)
@@ -61,10 +62,10 @@ enum custom_keycodes {
 // enum combos here
 enum combos {
 	//QWERTY
-	QR_ESC,
-	UP_TAB,
-	ZV_CPLK,
-	MQUEST_ENT,
+    QP_ESC,
+	UQUOT_TAB,
+	ZD_CPLK,
+	HQUEST_ENT,
 	//SYMBOL
 	TILNINE_ESC,
 	ATPER_TAB,
@@ -78,17 +79,18 @@ enum combos {
 	SQUARE_LESS,
 	SQCURL_GREAT,
 	//ARROW
-	MACROFTWO_ESC,
+	PRINTNUM_ESC,
 	HOMEPAGEUP_TAB,
 	STOPPLAY_CAPS,
+	MENUFTWO_ENT,
 };
 
 // define combo constants here
 //qwerty
-const uint16_t PROGMEM qr_combo[]         = {KC_Q, KC_R, COMBO_END};
-const uint16_t PROGMEM up_combo[]         = {KC_U, KC_P, COMBO_END};
-const uint16_t PROGMEM zv_combo[]         = {KC_Z, KC_V, COMBO_END};
-const uint16_t PROGMEM mquest_combo[]     = {KC_M, KC_QUES, COMBO_END};
+const uint16_t PROGMEM qp_combo[]         = {KC_Q, KC_P, COMBO_END};
+const uint16_t PROGMEM uquot_combo[]         = {KC_L, KC_QUOT, COMBO_END};
+const uint16_t PROGMEM zd_combo[]         = {KC_Z, KC_D, COMBO_END};
+const uint16_t PROGMEM hquest_combo[]     = {KC_H, KC_QUES, COMBO_END};
 //symbol standard
 const uint16_t PROGMEM tilnine_combo[]    = {KC_TILD, KC_9, COMBO_END};
 const uint16_t PROGMEM atper_combo[]      = {KC_AT, KC_PERC, COMBO_END};
@@ -102,16 +104,17 @@ const uint16_t PROGMEM hashdollar_combo[] = {KC_HASH, KC_DLR, COMBO_END};
 const uint16_t PROGMEM square_combo[]     = {KC_LBRC, KC_RBRC, COMBO_END};
 const uint16_t PROGMEM sqcurl_combo[]     = {KC_RBRC, KC_LCBR, COMBO_END};
 //arrow
-const uint16_t PROGMEM macroftwo_combo[]  = {TG_MACR, KC_F2, COMBO_END};
+const uint16_t PROGMEM printnum_combo[]   = {KC_PSCREEN, KC_NUMLOCK, COMBO_END};
 const uint16_t PROGMEM homepageup_combo[] = {KC_HOME, KC_PGUP, COMBO_END};
 const uint16_t PROGMEM stopplay_combo[]   = {KC_MSTP, KC_MPLY, COMBO_END};
+const uint16_t PROGMEM menuftwo_combo[]   = {KC_APP, KC_F2, COMBO_END};
 
 // define what the combo does
 combo_t key_combos[COMBO_COUNT] = {
-	[QR_ESC]          = COMBO(qr_combo, KC_ESC),
-	[UP_TAB]          = COMBO(up_combo, KC_TAB),
-	[ZV_CPLK]         = COMBO(zv_combo, KC_CAPSLOCK),
-	[MQUEST_ENT]      = COMBO(mquest_combo, KC_ENTER),
+	[QP_ESC]          = COMBO(qp_combo, KC_ESC),
+	[UQUOT_TAB]          = COMBO(uquot_combo, KC_TAB),
+	[ZD_CPLK]         = COMBO(zd_combo, KC_CAPSLOCK),
+	[HQUEST_ENT]      = COMBO(hquest_combo, KC_ENTER),
 
 	[TILNINE_ESC]     = COMBO(tilnine_combo, KC_ESC),
 	[ATPER_TAB]       = COMBO(atper_combo, KC_TAB),
@@ -125,22 +128,23 @@ combo_t key_combos[COMBO_COUNT] = {
 	[SQUARE_LESS]     = COMBO(square_combo, KC_LEFT_ANGLE_BRACKET),
 	[SQCURL_GREAT]    = COMBO(sqcurl_combo, KC_RIGHT_ANGLE_BRACKET),
 
-	[MACROFTWO_ESC]   = COMBO(macroftwo_combo, KC_ESC),
+	[PRINTNUM_ESC]    = COMBO(printnum_combo, KC_ESC),
 	[HOMEPAGEUP_TAB]  = COMBO(homepageup_combo, KC_TAB),
 	[STOPPLAY_CAPS]   = COMBO(stopplay_combo, KC_CAPSLOCK),
+	[MENUFTWO_ENT]    = COMBO(menuftwo_combo, KC_ENTER),
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-		KC_NO,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,   KC_NO,\
+		KC_NO,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO,  LALT_A,  LGUI_S,  LCTL_D,  LSFT_F,    KC_G,                         KC_H,  RSFT_J,  RCTL_K,  RGUI_L, RALT_QT,   KC_NO,\
+		KC_NO,  LALT_A,  LGUI_R,  LCTL_S, LSFT_TT,    KC_G,                         KC_K,  RSFT_N,  RCTL_E,  RGUI_I,  RALT_O,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, COMM_PN,  KC_DOT, KC_QUES,   KC_NO,\
+		KC_NO,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_M,    KC_H, COMM_PN,  KC_DOT, KC_QUES,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										  RGBTIME,  KC_SPC,  KC_SPC,      T_SYM, T_ARROW,  KC_DEL \
+										  GAMECLK,  SPCTWO, BSPCONE,    BSPCONE,  SPCTWO, RGBTIME \
 									  //`--------------------------'  `--------------------------'
 
   ),
@@ -153,43 +157,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_NO, KC_AMPR,    KC_1,    KC_2,    KC_3, KC_UNDS,                      KC_COMM, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										  XXXXXXX, KC_BSPC,  KC_SPC,    KC_TRNS, KC_TRNS,  KC_DEL \
+										  DM_REC1,   SYMLK, KC_TRNS,    KC_TRNS,  SYMLK,  KC_DEL \
 									  //`--------------------------'  `--------------------------'
   ),
 
   [_ARROW] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-		KC_NO, TG_MACR, TG_FUNC, TG_GAME,   KC_F2, KC_VOLU,                      RGB_VAI, KC_HOME,   KC_UP,  KC_END, KC_PGUP,   KC_NO,\
+		KC_NO, KC_PSCR, KC_SLCK, KC_PAUS, KC_NLCK, KC_VOLU,                      RGB_VAI, KC_HOME,   KC_UP,  KC_END, KC_PGUP,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_NO, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, KC_VOLD,                      RGB_SPI, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, KC_MSTP, KC_MPRV, KC_MNXT, KC_MPLY, KC_MUTE,                      RGB_TOG, MA_UNDO, MA_REDO,  KC_APP, KC_SLCK,   KC_NO,\
+		KC_NO, KC_MSTP, KC_MPRV, KC_MNXT, KC_MPLY, KC_MUTE,                      RGB_TOG,  KC_APP,  KC_INS, TG_FUNC,   KC_F2,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										  XXXXXXX, KC_BSPC,  KC_SPC,     KC_TRNS, KC_TRNS,  KC_DEL \
+										   KC_DEL, KC_TRNS, ARROWLK,    ARROWLK, KC_TRNS, DM_PLY1 \
 									  //`--------------------------'  `--------------------------'
   ),
 
   [_FUNC] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-		KC_NO,   KC_F9,  KC_F10,  KC_F11,  KC_F12, KC_PSCR,                      KC_PAUS,  KC_F21,  KC_F22,  KC_F23,  KC_F24,   KC_NO,\
+		KC_NO,   KC_F9,  KC_F10,  KC_F11,  KC_F12, TG_FUNC,                      TG_FUNC,  KC_F21,  KC_F22,  KC_F23,  KC_F24,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO,   KC_F5,   KC_F6,   KC_F7,   KC_F8,  KC_INS,                      KC_NLCK,  KC_F17,  KC_F18,  KC_F19,  KC_F20,   KC_NO,\
+		KC_NO,   KC_F5,   KC_F6,   KC_F7,   KC_F8, TG_FUNC,                      TG_FUNC,  KC_F17,  KC_F18,  KC_F19,  KC_F20,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,                      XXXXXXX,  KC_F13,  KC_F14,  KC_F15,  KC_F16,   KC_NO,\
+		KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F4, TG_FUNC,                      TG_FUNC,  KC_F13,  KC_F14,  KC_F15,  KC_F16,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										  XXXXXXX, KC_BSPC,  KC_SPC,    XXXXXXX, TG_FUNC,  KC_DEL \
-									  //`--------------------------'  `--------------------------'
-  ),
-
-  [_MACRO] = LAYOUT( \
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-		KC_NO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										  XXXXXXX, KC_BSPC,  KC_SPC,    XXXXXXX, TG_MACR,  KC_DEL \
+										   KC_DEL,  KC_SPC, KC_BSPC,    KC_BSPC, KC_BSPC,  KC_DEL \
 									  //`--------------------------'  `--------------------------'
   ),
 
@@ -197,23 +189,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
 		KC_NO,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,                      XXXXXXX, TG_GAME, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
+		KC_NO, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
+		KC_NO, KC_LCTL,    KC_Z,    KC_X,    KC_C, TG_GNUM,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										  XXXXXXX, TG_GNUM,  KC_SPC,    XXXXXXX, XXXXXXX, XXXXXXX \
+										  GAMECLK,  KC_SPC,  KC_SPC,    XXXXXXX, XXXXXXX, XXXXXXX \
 									  //`--------------------------'  `--------------------------'
   ),
 
   [_GAMENUM] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-		KC_NO, KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
+		KC_NO, KC_TRNS,    KC_7,    KC_8,    KC_9, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, KC_TRNS,    KC_5,    KC_6,    KC_7,    KC_8,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
+		KC_NO, KC_TRNS,    KC_4,    KC_5,    KC_6, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, KC_TRNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
+		KC_NO, KC_TRNS,    KC_1,    KC_2,    KC_3, TG_GNUM,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-										  XXXXXXX, KC_TRNS,  KC_SPC,    XXXXXXX, XXXXXXX, XXXXXXX \
+										  XXXXXXX,  KC_SPC,  KC_SPC,    XXXXXXX, XXXXXXX, XXXXXXX \
 									  //`--------------------------'  `--------------------------'
   )
 };
@@ -225,6 +217,9 @@ bool rightShifted;
 bool isKCMPressed;
 bool isQUESPressed;
 bool entered;
+bool lockReady;
+bool locking;
+bool backspaceHeld;
 
 // Code that is run once the keyboard has fully initialized.
 void keyboard_post_init_user(void) {
@@ -237,6 +232,9 @@ void keyboard_post_init_user(void) {
 	isKCMPressed = false;
 	isQUESPressed = false;
 	entered = false;
+	lockReady = false;
+	locking = false;
+	backspaceHeld = false;
 }
 
 void persistent_default_layer_set(uint16_t default_layer) {
@@ -247,27 +245,28 @@ void persistent_default_layer_set(uint16_t default_layer) {
 // mod-tap timing controls
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-
-		case T_ARROW:
-			return TAPPING_TERM + 100;  // < ideal < 200
-		case T_SYM:
-			return TAPPING_TERM + 100;
+	    case SPCONE:
+	    case SPCTWO:
+	        return TAPPING_TERM + 100;
+	    case BSPCONE:
+	    case BSPCTWO:
+	        return TAPPING_TERM + 100;
 
 		case LALT_A:
 			return TAPPING_TERM + 200;
-		case LGUI_S:
+		case LGUI_R:
 	  return TAPPING_TERM + 350; // 300 < ideal <
-	case LCTL_D:
+	case LCTL_S:
 	  return TAPPING_TERM + 100;
-	case LSFT_F:
+	case LSFT_TT:
 	  return TAPPING_TERM + 12; // 0 < ideal < 25
-	case RSFT_J:
+	case RSFT_N:
 	  return TAPPING_TERM + 12;
-	case RCTL_K:
+	case RCTL_E:
 	  return TAPPING_TERM + 100;
-	case RGUI_L:
+	case RGUI_I:
 	  return TAPPING_TERM + 350; // 300 < ideal <
-	case RALT_QT:
+	case RALT_O:
 	  return TAPPING_TERM + 200;
 
 	case LALT_GV:
@@ -294,10 +293,103 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 // Custom keycode controls (Custom keycodes and Macros are the same thing!)
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-   switch (keycode) {
+static uint16_t key_timer;
+// space_timer = timer_read();
+	switch (keycode) {
+	    case BSPCONE:
+	    case SPCTWO:
+	        if (record->event.pressed) {
+	            lockReady = true;
+	        }
+	        else {
+	            lockReady = false;
+	        }
+	        return true;
+	    case SYMLK:
+	        if (record->event.pressed) {
+	            if (lockReady) {
+	                locking = true;
+	            }
+	            else {
+	                register_code(KC_SPC);
+	                backspaceHeld = true;
+	            }
+	        }
+	        else {
+	            if (locking) {
+	                layer_on(_SYMBOL);
+	                locking = false;
+	            }
+	            else if (backspaceHeld) {
+	                unregister_code(KC_SPC);
+	                backspaceHeld = false;
+	            }
+	            if (lockReady) {
+	                tap_code(KC_SPC);
+	            }
+	        }
+	    return false;
+	    case ARROWLK:
+	        if (record->event.pressed) {
+	            if (lockReady) {
+	                locking = true;
+	            }
+	            else {
+	                register_code(KC_BSPC);
+	                backspaceHeld = true;
+	            }
+	        }
+	        else {
+	            if (locking) {
+	                layer_on(_ARROW);
+	                locking = false;
+	            }
+	            else if (backspaceHeld) {
+	                unregister_code(KC_BSPC);
+	                backspaceHeld = false;
+	            }
+	            if (lockReady) {
+	                tap_code(KC_BSPC);
+	            }
+	        }
+	    return false;
+
+		case GAMECLK:
+			if (record->event.pressed) {
+				key_timer = timer_read();
+			}
+			else {
+				if (timer_elapsed(key_timer) > 1000) {
+				layer_invert(_GAME);
+				}
+				else {
+				    tap_code(KC_DEL);
+				}
+			}
+		return false;
+    	case RGBTIME:
+    		if (record->event.pressed) {
+    			key_timer = timer_read();
+    		}
+    		else if (timer_elapsed(key_timer) > 1000) {
+    			if (0 == rgbDayNight) {
+    				rgbDayNight = 1;
+    				rgb_matrix_sethsv_noeeprom(0, 255, rgb_matrix_get_val() / 3);
+    				rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+    			}
+    			else {
+    				rgbDayNight = 0;
+    				rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_SIMPLE);
+    				rgb_matrix_sethsv_noeeprom(78, 255, rgb_matrix_get_val() * 3);
+    			}
+    		}
+    		else {
+    		    tap_code(KC_DEL);
+    		}
+    		return false;
 
 	// macros for ; : !
-   case LSFT_F:
+   case LSFT_TT:
 	  if (record->event.pressed) {
 		 leftShifted = true;
 	  }
@@ -305,7 +397,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		 leftShifted = false;
 	  }
 	  return true;
-   case RSFT_J:
+   case RSFT_N:
 	  if (record->event.pressed) {
 		 rightShifted = true;
 	  }
@@ -350,7 +442,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		 return false;
 	  }
 	  return true;
-   case KC_M:
+   case KC_H:
 	  if (get_mods() & MOD_MASK_SHIFT) {
 		 if (record->event.pressed) {
 			isKCMPressed = true;
@@ -361,7 +453,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		 }
 		 else {
 			if (!entered) {
-			   tap_code(KC_M);
+			   tap_code(KC_H);
 			}
 			if (!isQUESPressed) {
 			   entered = false;
@@ -397,67 +489,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	  isQUESPressed = false;
 	  return true;
 
-	// undo and redo macros.
-   case MA_UNDO:
-	  if (record->event.pressed) {
-		 isKCMPressed = true;
-		 if (isQUESPressed) {
-			tap_code(KC_ENTER);
-			entered = true;
-		 }
-	  }
-	  else {
-		 if (!entered) {
-			SEND_STRING(SS_LCTL("z"));
-		 }
-		 if (!isQUESPressed) {
-			entered = false;
-		 }
-		 isKCMPressed = false;
-	  }
-	  return false;
-   case MA_REDO:
-	  if (record->event.pressed) {
-		 SEND_STRING(SS_LCTL("y"));
-	  }
-	  return false;
-   case KC_SLCK:
-	  if (record->event.pressed) {
-		 isQUESPressed = true;
-		 if (isKCMPressed) {
-			tap_code(KC_ENTER);
-			entered = true;
-		 }
-	  }
-	  else {
-		 isQUESPressed = false;
-		 if (!entered) {
-			tap_code(KC_SLCK);
-		 }
-		 if (!isKCMPressed) {
-			entered = false;
-		 }
-		 isQUESPressed = false;
-	  }
-	  return false;
-
-   case RGBTIME:
-	  if (record->event.pressed) {
-		 if (0 == rgbDayNight) {
-			rgbDayNight = 1;
-			rgb_matrix_sethsv_noeeprom(0, 255, rgb_matrix_get_val() / 3);
-			rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-		 }
-		 else {
-			rgbDayNight = 0;
-			rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_SIMPLE);
-			rgb_matrix_sethsv_noeeprom(78, 255, rgb_matrix_get_val() * 3);
-		 }
-	  }
-	  return false;
-
-   default:
-	 return true; // Process all other keycodes normally.
+	default:
+		return true; // Process all other keycodes normally.
   }
 }
 
@@ -478,10 +511,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 		 case _FUNC:
 			rgb_matrix_sethsv_noeeprom(100, 255, rgb_matrix_get_val());
-			break;
-
-		 case _MACRO:
-			rgb_matrix_sethsv_noeeprom(240, 255, rgb_matrix_get_val());
 			break;
 
 		 case _GAME:
@@ -510,14 +539,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 			case _FUNC:
 				currentLayer = 3;
 			break;
-			case _MACRO:
+			case _GAME:
 				currentLayer = 4;
 			break;
-			case _GAME:
-				currentLayer = 5;
-			break;
 			case _GAMENUM:
-				currentLayer = 6;
+				currentLayer = 5;
 			break;
 			default:
 				currentLayer = 0;
@@ -536,7 +562,7 @@ void rgb_matrix_indicators_user(void) {
 	if (1 == rgbDayNight) {
 		switch (currentLayer) {
 			case 0:
-			    // illuminate everytning.
+				// illuminate everytning.
 			break;
 			case 1:
 				rgb_matrix_set_color(6, 0, 0, 0);
