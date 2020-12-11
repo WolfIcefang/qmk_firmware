@@ -1,0 +1,158 @@
+[33mcommit c66df1664497546f32662409778731143e45a552[m[33m ([m[1;33mtag: 0.11.0[m[33m)[m
+Author: James Young <18669334+noroadsleft@users.noreply.github.com>
+Date:   Sat Nov 28 12:02:18 2020 -0800
+
+    2020 November 28 Breaking Changes Update (#11053)
+    
+    * Branch point for 2020 November 28 Breaking Change
+    
+    * Remove matrix_col_t to allow MATRIX_ROWS > 32 (#10183)
+    
+    * Add support for soft serial to ATmega32U2 (#10204)
+    
+    * Change MIDI velocity implementation to allow direct control of velocity value (#9940)
+    
+    * Add ability to build a subset of all keyboards based on platform.
+    
+    * Actually use eeprom_driver_init().
+    
+    * Make bootloader_jump weak for ChibiOS. (#10417)
+    
+    * Joystick 16-bit support (#10439)
+    
+    * Per-encoder resolutions (#10259)
+    
+    * Share button state from mousekey to pointing_device (#10179)
+    
+    * Add hotfix for chibios keyboards not wake (#10088)
+    
+    * Add advanced/efficient RGB Matrix Indicators (#8564)
+    
+    * Naming change.
+    
+    * Support for STM32 GPIOF,G,H,I,J,K (#10206)
+    
+    * Add milc as a dependency and remove the installed milc (#10563)
+    
+    * ChibiOS upgrade: early init conversions (#10214)
+    
+    * ChibiOS upgrade: configuration file migrator (#9952)
+    
+    * Haptic and solenoid cleanup (#9700)
+    
+    * XD75 cleanup (#10524)
+    
+    * OLED display update interval support (#10388)
+    
+    * Add definition based on currently-selected serial driver. (#10716)
+    
+    * New feature: Retro Tapping per key (#10622)
+    
+    * Allow for modification of output RGB values when using rgblight/rgb_matrix. (#10638)
+    
+    * Add housekeeping task callbacks so that keyboards/keymaps are capable of executing code for each main loop iteration. (#10530)
+    
+    * Rescale both ChibiOS and AVR backlighting.
+    
+    * Reduce Helix keyboard build variation (#8669)
+    
+    * Minor change to behavior allowing display updates to continue between task ticks (#10750)
+    
+    * Some GPIO manipulations in matrix.c change to atomic. (#10491)
+    
+    * qmk cformat (#10767)
+    
+    * [Keyboard] Update the Speedo firmware for v3.0 (#10657)
+    
+    * Maartenwut/Maarten namechange to evyd13/Evy (#10274)
+    
+    * [quantum] combine repeated lines of code (#10837)
+    
+    * Add step sequencer feature (#9703)
+    
+    * aeboards/ext65 refactor (#10820)
+    
+    * Refactor xelus/dawn60 for Rev2 later (#10584)
+    
+    * add DEBUG_MATRIX_SCAN_RATE_ENABLE to common_features.mk (#10824)
+    
+    * [Core] Added `add_oneshot_mods` & `del_oneshot_mods` (#10549)
+    
+    * update chibios os usb for the otg driver (#8893)
+    
+    * Remove HD44780 References, Part 4 (#10735)
+    
+    * [Keyboard] Add Valor FRL TKL (+refactor) (#10512)
+    
+    * Fix cursor position bug in oled_write_raw functions (#10800)
+    
+    * Fixup version.h writing when using SKIP_VERSION=yes (#10972)
+    
+    * Allow for certain code in the codebase assuming length of string. (#10974)
+    
+    * Add AT90USB support for serial.c (#10706)
+    
+    * Auto shift: support repeats and early registration (#9826)
+    
+    * Rename ledmatrix.h to match .c file (#7949)
+    
+    * Split RGB_MATRIX_ENABLE into _ENABLE and _DRIVER (#10231)
+    
+    * Split LED_MATRIX_ENABLE into _ENABLE and _DRIVER (#10840)
+    
+    * Merge point for 2020 Nov 28 Breaking Change
+
+[33mcommit 503b76253891a9820ad2d21a89617654dc4414fb[m
+Author: Kosuke Adachi <ks@fstn.jp>
+Date:   Tue Nov 17 14:18:45 2020 +0900
+
+    Refactor the crkbd/via keymap and fix OLED bugs (#10354)
+    
+    * Refactor the crkbd/via keymap and fix OLED bugs
+    
+    * Revert "Refactor the crkbd/via keymap and fix OLED bugs"
+    
+    This reverts commit dc9db029fc6b077fc7600b49e920b755c522d100.
+    
+    * Fix OLED display bugs
+    
+    * Remove unused functions
+    
+    * Remove uncessary the key logger
+    
+    * Add new lines at end of file
+    
+    * Remove unnecesary extern for is_master
+    
+    * Remove extern is_master from rev1.h
+    
+    * Remove ssd1306 from common dir because its the legacy lib
+    
+    * Update default keymap based the via keymap
+    
+    * Remove foostan keymap because it will be legacy
+    
+    * Revert Remove unnecesary extern for is_master
+    
+    * Remove unnecessary backslashes.
+
+[33mcommit ca987251d49577b8cb64b5236361089e3a418eaa[m
+Author: Wolf Icefang <pawlowski486@gmail.com>
+Date:   Sun Sep 27 15:16:34 2020 -0500
+
+    Final update for atomic green layout qwerty edition (do not merge with qmk! lots of core files edited!)
+
+[33mcommit 1a1b08518e2a3faaabca406a7b5e5a393873a182[m
+Author: Wolf Icefang <pawlowski486@gmail.com>
+Date:   Fri Sep 25 20:51:08 2020 -0500
+
+    integrate 36 LED RGB layout for split common update
+
+[33mcommit 84171be490671c5adcff08c13d8f414ffd5c02a6[m
+Merge: ef8190d01 4a83021fe
+Author: Wolf Icefang <pawlowski486@gmail.com>
+Date:   Fri Sep 25 18:38:36 2020 -0500
+
+    Merge branch 'master' of https://github.com/qmk/qmk_firmware
+    
+    This should update my local branch. It should not impact the official QMK branch

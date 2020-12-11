@@ -26,22 +26,22 @@ enum custom_keycodes {
 // for qwerty
 #define LALT_A LALT_T(KC_A)
 #define LGUI_R LGUI_T(KC_R)
-#define LCTL_S LCTL_T(KC_S)
-#define LSFT_TT LSFT_T(KC_T)
+#define LSFT_S LSFT_T(KC_S)
+#define LCTL_TT LCTL_T(KC_T)
 
-#define RSFT_N RSFT_T(KC_N)
-#define RCTL_E RCTL_T(KC_E)
+#define RCTL_N RCTL_T(KC_N)
+#define RSFT_E RSFT_T(KC_E)
 #define RGUI_I RGUI_T(KC_I)
 #define RALT_O RALT_T(KC_O)
 
 // for symbols
 #define LALT_GV LALT_T(KC_GRAVE)
 #define LGUI_FO LGUI_T(KC_4)
-#define LCTL_FV LCTL_T(KC_5)
-#define LSFT_SX LSFT_T(KC_6)
+#define LSFT_FV LSFT_T(KC_5)
+#define LCTL_SX LCTL_T(KC_6)
 
-#define RSFT_MN RSFT_T(KC_MINUS)
-#define RCTL_MT RCTL_T(KC_KP_ASTERISK)
+#define RCTL_MN RCTL_T(KC_MINUS)
+#define RSFT_MT RSFT_T(KC_KP_ASTERISK)
 #define RGUI_SL RGUI_T(KC_SLASH)
 #define RALT_EQ RALT_T(KC_EQUAL)
 
@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
 		KC_NO,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO,  LALT_A,  LGUI_R,  LCTL_S, LSFT_TT,    KC_G,                         KC_K,  RSFT_N,  RCTL_E,  RGUI_I,  RALT_O,   KC_NO,\
+		KC_NO,  LALT_A,  LGUI_R,  LSFT_S, LCTL_TT,   KC_G,                         KC_K,   RCTL_N,  RSFT_E,  RGUI_I,  RALT_O,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_NO,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_M,    KC_H, COMM_PN,  KC_DOT, KC_QUES,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -153,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
 		KC_NO, KC_TILD,    KC_7,    KC_8,    KC_9, KC_PIPE,                      KC_CIRC,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, LALT_GV, LGUI_FO, LCTL_FV, LSFT_SX, KC_BSLS,                      KC_PLUS, RSFT_MN, RCTL_MT, RGUI_SL, RALT_EQ,   KC_NO,\
+		KC_NO, LALT_GV, LGUI_FO, LSFT_FV, LCTL_SX, KC_BSLS,                      KC_PLUS, RCTL_MN, RSFT_MT, RGUI_SL, RALT_EQ,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_NO, KC_AMPR,    KC_1,    KC_2,    KC_3, KC_UNDS,                      KC_COMM, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -165,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
 		KC_NO, KC_PSCR, KC_SLCK, KC_PAUS, KC_NLCK, KC_VOLU,                      RGB_VAI, KC_HOME,   KC_UP,  KC_END, KC_PGUP,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-		KC_NO, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, KC_VOLD,                      RGB_SPI, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,   KC_NO,\
+		KC_NO, KC_LALT, KC_LGUI, KC_LSFT, KC_LCTL, KC_VOLD,                      RGB_SPI, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 		KC_NO, KC_MSTP, KC_MPRV, KC_MNXT, KC_MPLY, KC_MUTE,                      RGB_TOG,  KC_APP,  KC_INS, TG_FUNC,   KC_F2,   KC_NO,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -256,13 +256,13 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 			return TAPPING_TERM + 200;
 		case LGUI_R:
 	  return TAPPING_TERM + 350; // 300 < ideal <
-	case LCTL_S:
+	case LCTL_TT:
 	  return TAPPING_TERM + 100;
-	case LSFT_TT:
+	case LSFT_S:
 	  return TAPPING_TERM + 12; // 0 < ideal < 25
-	case RSFT_N:
+	case RSFT_E:
 	  return TAPPING_TERM + 12;
-	case RCTL_E:
+	case RCTL_N:
 	  return TAPPING_TERM + 100;
 	case RGUI_I:
 	  return TAPPING_TERM + 350; // 300 < ideal <
@@ -273,13 +273,13 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	  return TAPPING_TERM + 200;
 	case LGUI_FO:
 	  return TAPPING_TERM + 350; // 300 < ideal <
-	case LCTL_FV:
+	case LCTL_SX:
 	  return TAPPING_TERM + 100;
-	case LSFT_SX:
+	case LSFT_FV:
 	  return TAPPING_TERM + 12;
-	case RSFT_MN:
+	case RSFT_MT:
 	  return TAPPING_TERM + 12;
-	case RCTL_MT:
+	case RCTL_MN:
 	  return TAPPING_TERM + 100;
 	case RGUI_SL:
 	  return TAPPING_TERM + 350; // 300 < ideal <
@@ -389,7 +389,7 @@ static uint16_t key_timer;
     		return false;
 
 	// macros for ; : !
-   case LSFT_TT:
+   case LSFT_S:
 	  if (record->event.pressed) {
 		 leftShifted = true;
 	  }
@@ -397,7 +397,7 @@ static uint16_t key_timer;
 		 leftShifted = false;
 	  }
 	  return true;
-   case RSFT_N:
+   case RSFT_E:
 	  if (record->event.pressed) {
 		 rightShifted = true;
 	  }
