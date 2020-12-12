@@ -22,12 +22,12 @@ bool effect_runner_reactive(effect_params_t* params, reactive_f effect_func) {
 			}
 		}
 
-		uint16_t offset = scale16by8(tick, rgb_matrix_config.speed);
-		hsvGrad.h = rgb_matrix_config.hsv.h + (scaleGrad * g_led_config.point[i].x >> 5);
-		RGB rgb = hsv_to_rgb(effect_func(hsvGrad, offset));
-		rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
-	}
-	return led_max < DRIVER_LED_TOTAL;
+        uint16_t offset = scale16by8(tick, rgb_matrix_config.speed);
+        hsvGrad.h       = rgb_matrix_config.hsv.h + (scaleGrid * g_led_config.point[i].x >> 5);
+        RGB      rgb    = rgb_matrix_hsv_to_rgb(effect_func(hsvGrad, offset));
+        rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+    }
+    return led_max < DRIVER_LED_TOTAL;
 }
 
 #endif  // RGB_MATRIX_KEYREACTIVE_ENABLED
